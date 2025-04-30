@@ -1,12 +1,13 @@
 import express from "express";
-import { createNewRegisterController } from "../controllers/shortUrl.controller.js";
+import { createNewRegisterController, getAlltUrlsController, redirectUrlController, getUrlbyShortUrlController, createNewPremiumRegisterController } from "../controllers/shortUrl.controller.js";
 
 const urlRouter = express.Router();
 
-urlRouter.get('/', (req, res) => {
-    return res.send('Hello from short')
-})
-
+// Routes
+urlRouter.get('/', getAlltUrlsController)
 urlRouter.post('/', createNewRegisterController)
+urlRouter.post('/premium', createNewPremiumRegisterController)
+urlRouter.get('/:shortUrl', redirectUrlController)
+urlRouter.get('/url/:shortUrl', getUrlbyShortUrlController)
 
 export default urlRouter
